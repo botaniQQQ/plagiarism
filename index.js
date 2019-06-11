@@ -42,7 +42,7 @@ const plagiarism = async (text, params) => {
                     spell_check = spell_check ? JSON.parse(spell_check) : '';
                     seo_check = seo_check ? JSON.parse(seo_check) : '';
                     const {count_chars_with_space, count_words, spam_percent, water_percent} = seo_check || {};
-                    result.main.plagiarism = typeof text_unique === 'number' ? text_unique : '';
+                    result.main.percent = typeof text_unique === 'number' ? text_unique : '';
                     result.main.chars = typeof count_chars_with_space === 'number' ? count_chars_with_space : '';
                     result.main.words = typeof count_words === 'number' ? count_words : '';
                     result.main.spam = typeof spam_percent === 'number' ? spam_percent : '';

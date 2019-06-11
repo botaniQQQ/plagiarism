@@ -30,7 +30,7 @@ plagiarism('Your text ...', {
     //        "seo_check": ""
     //    },
     //    "main" {
-    //        "plagiarism": 43.02,
+    //        "percent": 43.02,
     //        "chars": "",
     //        "words": "",
     //        "spam": "",
@@ -70,7 +70,7 @@ More information: https://text.ru/api-check/manual
         "seo_check": ""
     },
     "main": {
-        "plagiarism": 43.02,
+        "percent": 43.02,
         "chars": "",
         "words": "",
         "spam": "",
@@ -104,7 +104,7 @@ As soon as one of the parameters `text_unique` or `spell_check` or `seo_check` i
         }
     },
     "main": {
-        "plagiarism": "",
+        "percent": "",
         "chars": 150,
         "words": 20,
         "spam": 35,
@@ -136,7 +136,7 @@ Next, send a second request and get a full response.
         }
     },
     "main": {
-        "plagiarism": 43.02,
+        "percent": 43.02,
         "chars": 150,
         "words": 20,
         "spam": 35,
