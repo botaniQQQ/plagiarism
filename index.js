@@ -22,7 +22,7 @@ const plagiarism = async (text, params) => {
             }
             api.uid = data.text_uid;
             if (api.callback) {
-                return Promise.resolve(api);
+                return Promise.resolve({"text.ru": api, "main": {}});
             }
         } catch (e) {
             console.error(e);
@@ -31,7 +31,7 @@ const plagiarism = async (text, params) => {
     }
 
     return new Promise(resolve => {
-        let result = {"text.ru": api}, n = 0, i = setInterval(() => {
+        let result = {"text.ru": api, "main": {}}, n = 0, i = setInterval(() => {
             axios.post('https://api.text.ru/post', qs.stringify(api)).then(res => {
                 let {text_unique, spell_check, seo_check} = res && res.data ? res.data : {};
                 let un = !!text_unique;
@@ -41,6 +41,12 @@ const plagiarism = async (text, params) => {
                     text_unique = text_unique ? parseFloat(text_unique) : '';
                     spell_check = spell_check ? JSON.parse(spell_check) : '';
                     seo_check = seo_check ? JSON.parse(seo_check) : '';
+                    const {count_chars_with_space, count_words, spam_percent, water_percent} = seo_check || {};
+                    result.main.plagiarism = typeof text_unique === 'number' ? text_unique : '';
+                    result.main.chars = typeof count_chars_with_space === 'number' ? count_chars_with_space : '';
+                    result.main.words = typeof count_words === 'number' ? count_words : '';
+                    result.main.spam = typeof spam_percent === 'number' ? spam_percent : '';
+                    result.main.water = typeof water_percent === 'number' ? water_percent : '';
                     result["text.ru"] = {...result["text.ru"], ...{text_unique, spell_check, seo_check}};
                 }
                 if (uid) {
@@ -55,19 +61,9 @@ const plagiarism = async (text, params) => {
                             return resolve(result);
                         }
                     }
-                } else {
-                    if (api.jsonvisible) {
-                        if (sp && se) {
-                            clearInterval(i);
-                            return resolve(result);
-                        } else if (un) {
-                            clearInterval(i);
-                            return resolve(result);
-                        }
-                    } else if (un) {
-                        clearInterval(i);
-                        return resolve(result);
-                    }
+                } else if (un || sp || se) {
+                    clearInterval(i);
+                    return resolve(result);
                 }
             }).catch(() => {
                 clearInterval(i);

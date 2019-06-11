@@ -1,5 +1,9 @@
 # Plagiarism checker for NodeJS
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/botaniQQQ/plagiarism/master/logo.png">
+</p>
+
 ### Installation
 ```
 npm i plagiarism
@@ -24,6 +28,13 @@ plagiarism('Your text ...', {
     //        "text_unique": 43.02,
     //        "spell_check": "",
     //        "seo_check": ""
+    //    },
+    //    "main" {
+    //        "plagiarism": 43.02,
+    //        "chars": "",
+    //        "words": "",
+    //        "spam": "",
+    //        "water": "",
     //    }
     //}
 }).catch(err => {
@@ -57,6 +68,13 @@ More information: https://text.ru/api-check/manual
         "text_unique": 43.02,
         "spell_check": "",
         "seo_check": ""
+    },
+    "main": {
+        "plagiarism": 43.02,
+        "chars": "",
+        "words": "",
+        "spam": "",
+        "water": ""
     }
 }
 ```
@@ -84,6 +102,13 @@ As soon as one of the parameters `text_unique` or `spell_check` or `seo_check` i
             "spam_percent": 35,
             "mixed_words": []
         }
+    },
+    "main": {
+        "plagiarism": "",
+        "chars": 150,
+        "words": 20,
+        "spam": 35,
+        "water": 3
     }
 }
 ```
@@ -109,7 +134,28 @@ Next, send a second request and get a full response.
             "spam_percent": 35,
             "mixed_words": []
         }
+    },
+    "main": {
+        "plagiarism": 43.02,
+        "chars": 150,
+        "words": 20,
+        "spam": 35,
+        "water": 3
     }
+}
+```
+
+**Option:** `{"callback": "https://exanple.com/callback"}`
+
+```json
+{
+    "text.ru": {
+        "userkey": "USER KEY",
+        "callback": "https://exanple.com/callback",
+        "timeout": 120,
+        "uid": "TEXT UID"
+    },
+    "main": {}
 }
 ```
 
