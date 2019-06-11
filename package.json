@@ -1,0 +1,32 @@
+{
+  "name": "plagiarism",
+  "version": "1.0.0",
+  "description": "Plagiarism checker for NodeJS",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/botaniQQQ/plagiarism.git"
+  },
+  "author": {
+    "name": "botaniQQQ"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/botaniQQQ/plagiarism/issues"
+  },
+  "homepage": "https://github.com/botaniQQQ/plagiarism#readme",
+  "dependencies": {
+    "axios": "0.19.0",
+    "qs": "6.7.0"
+  },
+  "keywords": [
+    "antiplagiat",
+    "plagiarism",
+    "checking",
+    "checker",
+    "uniqueness",
+    "unique",
+    "check",
+    "api"
+  ]
+}
