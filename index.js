@@ -3,14 +3,14 @@ const qs = require('qs');
 
 const plagiarism = async (text, params) => {
     if (typeof text === 'object' && text['text.ru'].uid) {
-        params = text;
+        params = JSON.parse(JSON.stringify(text));
     } else if (text.length < 100 || text.length > 15000) {
         return Promise.reject('100..15000');
     } else if (!params) {
         return Promise.reject('ERROR PARAMS');
     }
 
-    let api = params['text.ru'] ? params['text.ru'] : {};
+    let api = params['text.ru'] ? JSON.parse(JSON.stringify(params['text.ru'])) : {};
     api.timeout = api.timeout ? parseInt(api.timeout) : 120;
     let {uid} = api;
 
